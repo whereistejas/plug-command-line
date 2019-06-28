@@ -1,0 +1,138 @@
+%!TEX TS-program = xelatex
+% Standard Pattern
+% program name in texttt
+% 
+\documentclass[11pt]{beamer}
+
+\usetheme{minflat}
+
+\usepackage{tikz}
+\title[PLUG Meetup]{Master your Command Line \\ \small{(Before it masters you)} }
+\subtitle{\large{Part 2: Useful commands}}
+\author{Tejas Sanap}
+\date{\today}
+
+\begin{document}
+	\begin{frame}
+		\titlepage
+	\end{frame}
+	\begin{frame}
+		\tableofcontents
+	\end{frame}
+
+	\section{Introduction}
+		\begin{frame}{UNIX Philosophy}
+			Focused on \emph{modularity} \& \emph{reusability}. \\
+			It can be summarized as:
+			\begin{itemize}
+				\item Write programs that do one thing and do it well.
+				\item Write programs to work together.
+				\item Write programs to handle text streams, because that is a universal interface.
+			\end{itemize}
+		\end{frame}
+
+		\begin{frame}{Basic Operations}
+			All operations performed in the terminal can be categorized as:
+			\begin{itemize}
+				\item Search for text (in files).
+					\begin{itemize}
+						\item \texttt{grep, cat}
+					\end{itemize}
+				\item Search for files (in directories).
+					\begin{itemize}
+						\item \texttt{find, locate}
+					\end{itemize}
+				\item Manipulate text (in files).
+					\begin{itemize}
+						\item \texttt{sed, awk, cut}
+					\end{itemize}
+				\item Manipulate files (in directories).
+					\begin{itemize}
+						\item \texttt{cp, scp, rm, mv}
+					\end{itemize}
+				\item Manipulate file permission and ownership.
+			\end{itemize}			
+		\end{frame}
+
+		\begin{frame}{GNU Coreutils}
+				The {\color{blue}{GNU Core Utilities}} are the basic file, shell and text manipulation utilities of the GNU operating system. \\
+				They are expected to be present on every operating system. \\
+				Previously, the core utilities were implemented by the following pacakages:
+				\begin{enumerate}
+				  \item \texttt{fileutils} 
+				  \item \texttt{shellutils} 
+				  \item \texttt{textutils}
+				\end{enumerate}	
+				In 2003, these three packages were combined into the current \texttt{coreutils} package.
+		\end{frame}
+	
+	\section{Search}
+		\begin{frame}{Text editors}
+			Do we really need Vim?	
+		\end{frame}
+		\subsection{Text}
+			\begin{frame}{\texttt{grep}}
+					\texttt{grep} prints line that matches a certain pattern
+						\begin{exampleblock}{Syntax}
+							\texttt{grep OPTIONS PATTERN INPUT\_FILE\_NAMES}
+						\end{exampleblock}
+			\end{frame}
+			\begin{frame}{\texttt{cut}}
+				cut
+			\end{frame}
+		\subsection{Files}
+			\begin{frame}{ \texttt{find}}
+				find
+			\end{frame}
+			\begin{frame}{ \texttt{locate}}
+				locate
+			\end{frame}
+	
+	\section{Manipulate}
+		\begin{frame}{File Manager}
+			Do we really need Nautilus, Thunar or Ranger?	
+		\end{frame}
+		\subsection{Text}
+			\begin{frame}{ \texttt{sed}}
+				sed
+			\end{frame}
+			\begin{frame}{ \texttt{awk}}
+				awk
+			\end{frame}
+			\begin{frame}{ \texttt{cut}}
+				cur
+			\end{frame}
+		\subsection{Files}
+			\begin{frame}{ \texttt{scp}}
+				\begin{itemize}
+					\item download \texttt{znc.pem} from server to add to irssi client
+				\end{itemize}			
+			\end{frame}
+			\begin{frame}{ \texttt{rm}, \texttt{cp} \& \texttt{mv}}
+				\begin{itemize}
+					\item Text globbing - Use latex compile files and stuff as examples
+				\end{itemize}	
+			\end{frame}
+
+	\section{Shell porn}
+		\begin{frame}{\texttt{fasd}}
+			fasd
+		\end{frame}
+		\begin{frame}{\texttt{fortune} \& \texttt{cowsay}}
+			\begin{itemize}
+				\item Let's add some star trek quotes
+				\item Cowthink and cowsay
+				\item Add some bling with pony
+			\end{itemize}
+		\end{frame}
+
+	\section{Questions}
+		\begin{frame}{Questions?}
+			\large ?
+		\end{frame}
+
+	\section*{References}
+		\begin{frame}{References}
+			\texttt{\\bibliography}
+		\end{frame}
+\end{document}

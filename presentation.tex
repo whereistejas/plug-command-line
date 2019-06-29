@@ -1,7 +1,11 @@
 %!TEX TS-program = xelatex
 % Standard Pattern
 % program name in texttt
-% 
+% program function and syntax
+% program example by person giving the talk
+% program useful options
+% program example for participants
+
 \documentclass[11pt]{beamer}
 
 \usetheme{minflat}
@@ -50,6 +54,7 @@
 				\item Manipulate files (in directories).
 					\begin{itemize}
 						\item \texttt{cp, scp, rm, mv}
+						\item \texttt{gzip, tar}
 					\end{itemize}
 				\item Manipulate file permission and ownership.
 			\end{itemize}			
@@ -72,14 +77,35 @@
 			Do we really need Vim?	
 		\end{frame}
 		\subsection{Text}
-			\begin{frame}{\texttt{grep}}
-					\texttt{grep} prints line that matches a certain pattern
-						\begin{exampleblock}{Syntax}
+			\begin{frame}{\texttt{cat}}
+				cat
+			\end{frame}
+			\begin{frame}[fragile]{\texttt{grep}}
+					\texttt{grep} prints line that matches a certain pattern.
+						\begin{alertblock}{Syntax}
 							\texttt{grep OPTIONS PATTERN INPUT\_FILE\_NAMES}
+						\end{alertblock}
+						\begin{exampleblock}{Example}
+							\begin{semiverbatim}
+\$ grep --color=always "anime" torrent-tracker
+udp://tc.{\textbf{\color{red}{anime}}}reactor.ru:8082/announce
+udp://tc.{\textbf{\color{red}{anime}}}reactor.ru:8082/announce \end{semiverbatim}	
 						\end{exampleblock}
 			\end{frame}
-			\begin{frame}{\texttt{cut}}
-				cut
+			\begin{frame}[t, fragile]{\texttt{grep}}
+				The exit status of \texttt{grep} when:
+				\begin{itemize}
+					\item \textbf{line is selected} is \textbf{0}.
+					\item \textbf{no line is selected} is \textbf{1}.
+					\item \textbf{an error occurs} is \textbf{2}.
+				\end{itemize}
+				Useful \texttt{grep} options:
+				\begin{description}
+					\item[\texttt{-i}] ignore case
+					\item[ \texttt{-v}] invert matches
+					\item[ \texttt{-c}] count no. of matching lines
+					\item[ \texttt{--color}] color the matching content
+				\end{description}
 			\end{frame}
 		\subsection{Files}
 			\begin{frame}{ \texttt{find}}
@@ -115,6 +141,9 @@
 					\item \href{https://www.gnu.org/software/bash/manual/bashref.html#Pattern-Matching}{Bash Pattern Matching} \\
 						\texttt{ rm pre*.!(tex) }
 				\end{itemize}	
+			\end{frame}
+			\begin{frame}{ \texttt{gzip, tar}}
+				
 			\end{frame}
 
 	\section{Shell porn}

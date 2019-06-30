@@ -10,9 +10,7 @@
 
 \usetheme{minflat}
 
-\usepackage{tikz}
-\usepackage[colorlinks=true]{hyperref}
-\usepackage{moreverb}
+\usepackage{hyperref}
 \title[PLUG Meetup]{Master your Command Line \\ \small{(Before it masters you)} }
 \subtitle{\large{Part 2: Useful commands}}
 \author{Tejas Sanap}
@@ -42,7 +40,8 @@
 			\begin{itemize}
 				\item Search for text (in files).
 					\begin{itemize}
-						\item \texttt{grep, cat}
+						\item \texttt{cat, head, tail, wc}
+						\item \texttt{grep}
 					\end{itemize}
 				\item Search for files (in directories).
 					\begin{itemize}
@@ -62,7 +61,7 @@
 		\end{frame}
 
 		\begin{frame}{GNU Coreutils}
-				The {\color{blue}{GNU Core Utilities}} are the basic file, shell and text manipulation utilities of the GNU operating system. \\
+			The {\textbf{\color{darkpurple}{GNU Core Utilities}}} are the basic file, shell and text manipulation utilities of the GNU operating system. \\
 				They are expected to be present on every operating system. \\
 				Previously, the core utilities were implemented by the following pacakages:
 				\begin{enumerate}
@@ -78,10 +77,29 @@
 			Do we really need Vim?	
 		\end{frame}
 		\subsection{Text}
-			\begin{frame}{\texttt{cat}}
-				cat
+			\begin{frame}{\texttt{cat, head, tail, wc}}
+				Utilities to view file content
+				\begin{example}
+					\texttt{cat -A -n -s torrent-trackers}
+				\end{example}
+				\begin{example}
+					\texttt{head -n 10 torrent-trackers}
+				\end{example}
+				\begin{example}
+					\texttt{tail -n 10 torrent-trackers}
+				\end{example}
+				\begin{example}
+					\texttt{wc torrent-trackers}
+				\end{example}
+				{
+					\definecolor{beamerorange}{RGB}{255,0,0}
+					\begin{alertblock}{\texttt{wc} - Output}
+						\texttt{465  233 9585 torrent-trackers} \\
+						\tiny \texttt{newline, wordcount, bytes, filename}
+					\end{alertblock}
+				}
 			\end{frame}
-			\subsection{grep}
+
 			\begin{frame}[fragile]{\texttt{grep}}
 				\texttt{grep} prints line that matches a certain pattern.
 				\begin{alertblock}{Syntax}
@@ -94,6 +112,7 @@ udp://tc.{\textbf{\color{red}{anime}}}reactor.ru:8082/announce
 udp://tc.{\textbf{\color{red}{anime}}}reactor.ru:8082/announce \end{semiverbatim}	
 				\end{exampleblock}
 			\end{frame}
+
 			\begin{frame}[t, fragile]{\texttt{grep}}
 				The exit status of \texttt{grep} when:
 				\begin{itemize}
@@ -116,6 +135,7 @@ udp://tc.{\textbf{\color{red}{anime}}}reactor.ru:8082/announce \end{semiverbatim
 					\item[ \texttt{--label=LABEL}] display input actually coming from \texttt{stdin} as input from file \texttt{LABEL}
 				\end{description}
 			\end{frame}
+
 			\begin{frame}[t]{ \texttt{grep}}
 				\begin{block}{Task}
 					\begin{enumerate}
@@ -132,9 +152,10 @@ udp://tc.{\textbf{\color{red}{anime}}}reactor.ru:8082/announce \end{semiverbatim
 						\only<3>{\$ tar -xzf python\_code.tar.gz --to-command='\textbf{\color{red}{grep main}}'}
 						\only<4>{\$ tar -xzf python\_code.tar.gz --to-command='\textbf{\color{red}{grep -a main}}'}
 						\only<5>{\$ tar -xzf python\_code.tar.gz --to-command='\textbf{\color{red}{grep -a -H main}}'}
-						\only<6>{\$ tar -xzf python\_code.tar.gz --to-command='\textbf{\color{red}{grep -a -H --label="\$TAR\_FILENAME" -n main}}'}
-						\only<7>{\$ tar -xzf python\_code.tar.gz --to-command='\textbf{\color{red}{grep -a -H --label="\$TAR\_FILENAME" -c main}}'}
-						\only<8>{\$ tar -xzf python\_code.tar.gz --to-command='\textbf{\color{red}{grep -a -H --label="\$TAR\_FILENAME" -c -s main}}'}
+						\only<6>{\$ tar -xzf python\_code.tar.gz --to-command='\textbf{\color{red}{grep -a -H --label="\$TAR\_FILENAME" main}}'}
+						\only<7>{\$ tar -xzf python\_code.tar.gz --to-command='\textbf{\color{red}{grep -a -H --label="\$TAR\_FILENAME" -n main}}'}
+						\only<8>{\$ tar -xzf python\_code.tar.gz --to-command='\textbf{\color{red}{grep -a -H --label="\$TAR\_FILENAME" -c main}}'}
+						\only<9>{\$ tar -xzf python\_code.tar.gz --to-command='\textbf{\color{red}{grep -a -H --label="\$TAR\_FILENAME" -c -s main}}'}
 					\end{semiverbatim}
 				\end{example}
 			\end{frame}
@@ -189,10 +210,7 @@ udp://tc.{\textbf{\color{red}{anime}}}reactor.ru:8082/announce \end{semiverbatim
 			\end{itemize}
 		\end{frame}
 
-	\section{Questions}
-		\begin{frame}{Questions?}
-			\large ?
-		\end{frame}
+	\highlightedFrame{Questions?}
 
 	\section*{References}
 		\begin{frame}{References}

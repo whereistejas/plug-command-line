@@ -12,6 +12,7 @@
 
 \usepackage{tikz}
 \usepackage[colorlinks=true]{hyperref}
+\usepackage{moreverb}
 \title[PLUG Meetup]{Master your Command Line \\ \small{(Before it masters you)} }
 \subtitle{\large{Part 2: Useful commands}}
 \author{Tejas Sanap}
@@ -80,17 +81,18 @@
 			\begin{frame}{\texttt{cat}}
 				cat
 			\end{frame}
+			\subsection{grep}
 			\begin{frame}[fragile]{\texttt{grep}}
-					\texttt{grep} prints line that matches a certain pattern.
-						\begin{alertblock}{Syntax}
-							\texttt{grep OPTIONS PATTERN INPUT\_FILE\_NAMES}
-						\end{alertblock}
-						\begin{exampleblock}{Example}
-							\begin{semiverbatim}
+				\texttt{grep} prints line that matches a certain pattern.
+				\begin{alertblock}{Syntax}
+					\texttt{grep OPTIONS PATTERN INPUT\_FILE\_NAMES}
+				\end{alertblock}
+				\begin{exampleblock}{Example}
+					\begin{semiverbatim}
 \$ grep --color=always "anime" torrent-tracker
 udp://tc.{\textbf{\color{red}{anime}}}reactor.ru:8082/announce
-udp://tc.{\textbf{\color{red}{anime}}}reactor.ru:8082/announce \end{semiverbatim}	
-						\end{exampleblock}
+udp://tc.{\textbf{\color{red}{anime}}}reactor.ru:8082/announce \end{verbatim}	
+				\end{exampleblock}
 			\end{frame}
 			\begin{frame}[t, fragile]{\texttt{grep}}
 				The exit status of \texttt{grep} when:
@@ -101,11 +103,40 @@ udp://tc.{\textbf{\color{red}{anime}}}reactor.ru:8082/announce \end{semiverbatim
 				\end{itemize}
 				Useful \texttt{grep} options:
 				\begin{description}
-					\item[\texttt{-i}] ignore case
+					\item[ \texttt{-i}] ignore case
 					\item[ \texttt{-v}] invert matches
 					\item[ \texttt{-c}] count no. of matching lines
+					\item[ \texttt{-n}] prefic each line with line number
+					\item[ \texttt{-l}] print name of the file and suppress all other output
+					\item[ \texttt{-H}] print filename for each match
+					\item[ \texttt{-o}] print only the matched parts of a line
+					\item[ \texttt{-s}] suppress error messages
 					\item[ \texttt{--color}] color the matching content
+					\item[ \texttt{-a} ] accept binary input
+					\item[ \texttt{--label=LABEL}] display input actually coming from \texttt{stdin} as input from file \texttt{LABEL}
 				\end{description}
+			\end{frame}
+			\begin{frame}[t]{ \texttt{grep}}
+				\begin{block}{Task}
+					\begin{enumerate}
+						\item We have a tar file named \texttt{python\_code.tar.gz}
+						\item We want to search for a function named \texttt{main}
+						\item But, without, extracting or decompressing the tar file
+					\end{enumerate}
+				\end{block}	
+				\setbeamercovered{invisible}
+				\begin{example}
+					\begin{semiverbatim}
+						\only<1>{\$ tar -xf python\_code.tar.gz}
+						\only<2>{\$ tar -xzf python\_code.tar.gz}
+						\only<3>{\$ tar -xzf python\_code.tar.gz --to-command='\textbf{\color{red}{grep main}}'}
+						\only<4>{\$ tar -xzf python\_code.tar.gz --to-command='\textbf{\color{red}{grep -a main}}'}
+						\only<5>{\$ tar -xzf python\_code.tar.gz --to-command='\textbf{\color{red}{grep -a -H main}}'}
+						\only<6>{\$ tar -xzf python\_code.tar.gz --to-command='\textbf{\color{red}{grep -a -H --label="\$TAR\_FILENAME" -n main}}'}
+						\only<7>{\$ tar -xzf python\_code.tar.gz --to-command='\textbf{\color{red}{grep -a -H --label="\$TAR\_FILENAME" -c main}}'}
+						\only<8>{\$ tar -xzf python\_code.tar.gz --to-command='\textbf{\color{red}{grep -a -H --label="\$TAR\_FILENAME" -c -s main}}'}
+					\end{semiverbatim}
+				\end{example}
 			\end{frame}
 		\subsection{Files}
 			\begin{frame}{ \texttt{find}}

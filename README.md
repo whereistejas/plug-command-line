@@ -1,3 +1,5 @@
+This presentation is still a work in progress.
+You can check out the PDF file to see how far I have made it!
 ## Tasks
 
 ### `grep`

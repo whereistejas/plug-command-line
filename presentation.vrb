@@ -1,15 +1,51 @@
 \frametitle{ \texttt {find}}
-\texttt{find} search for files in a directory hierarchy.
-^^I^^I^^I^^I\setbeamercovered{invisible}
-^^I^^I^^I^^I\begin{alertblock}{Syntax}
-^^I^^I^^I^^I^^I\only<1>{\texttt{find DIRECTORY EXPRESSION}}
-^^I^^I^^I^^I^^I\only<2->{\texttt{find DIRECTORY TESTS ACTIONS}}
-^^I^^I^^I^^I\end{alertblock}
-^^I^^I^^I^^I\only<3->{
-^^I^^I^^I^^I\begin{example}
+\only<1>{
+^^I^^I^^I^^I\begin{exampleblock}{ \texttt{-path}}
 ^^I^^I^^I^^I^^I\begin{semiverbatim}
-^^I^^I^^I^^I^^I^^I\$ find . -name fontawesome -print
-^^I^^I^^I^^I^^I^^I ./fontawesome
-^^I^^I^^I^^I^^I\end{semiverbatim}
-^^I^^I^^I^^I\end{example}
-^^I^^I^^I}
+\$ find . -path '*/dir4a'
+
+./dir1/dir1a/dir2c/dir3a/dir4a \end{semiverbatim}
+^^I^^I^^I^^I\end{exampleblock}
+^^I^^I^^I^^I}
+^^I^^I^^I^^I\only<2-4>{
+^^I^^I^^I^^I^^I\begin{block}{Task}
+^^I^^I^^I^^I^^I^^IFind files that were edited before:
+^^I^^I^^I^^I^^I^^I\begin{enumerate}
+^^I^^I^^I^^I^^I^^I^^I\item 10 days.
+^^I^^I^^I^^I^^I^^I^^I\item 10 minutes.
+^^I^^I^^I^^I^^I^^I\end{enumerate}
+^^I^^I^^I^^I^^I\end{block}
+^^I^^I^^I^^I}
+^^I^^I^^I^^I\only<3>{
+^^I^^I^^I^^I\begin{exampleblock}{ \texttt{-newerXY}}
+^^I^^I^^I^^I^^I\begin{semiverbatim}
+\$ find . -newermt "Jul 11"
+\end{semiverbatim}
+^^I^^I^^I^^I\end{exampleblock}
+^^I^^I^^I^^I}
+^^I^^I^^I^^I\only<4>{
+^^I^^I^^I^^I\begin{exampleblock}{ \texttt{-newerXY}}
+^^I^^I^^I^^I^^I\begin{semiverbatim}
+\$ find . -newermt "10:20"
+\end{semiverbatim}
+^^I^^I^^I^^I\end{exampleblock}
+^^I^^I^^I^^I}
+^^I^^I^^I^^I\only<5>{
+^^I^^I^^I^^I\begin{exampleblock}{ \texttt{-size}}
+^^I^^I^^I^^I^^I\begin{semiverbatim}
+\$ find . -size +5k
+\$ find . -size -5k
+\end{semiverbatim}
+^^I^^I^^I^^I\end{exampleblock}
+^^I^^I^^I^^I}
+^^I^^I^^I^^I\only<6>{
+^^I^^I^^I^^I\begin{exampleblock}{Content}
+^^I^^I^^I^^I^^I\begin{semiverbatim}
+\$ find . -name '*.[23]' | xargs grep -l anime
+
+./dir1/dir1a/dir2c/dir3a/file4.2
+
+./dir1/dir1b/file1b.3
+\end{semiverbatim}
+^^I^^I^^I^^I\end{exampleblock}
+^^I^^I^^I^^I}

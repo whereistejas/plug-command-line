@@ -203,11 +203,85 @@
 				\only<3->{
 				\begin{example}
 					\begin{semiverbatim}
-						\$ find . -name fontawesome -print
-						 ./fontawesome
+						\$ find . -name file1b1
 					\end{semiverbatim}					
 				\end{example}
-			}
+				}
+				\only<4->{
+					Useful global options:
+					\begin{description}
+						\item[ \texttt{-maxdepth n}] Descend at most \texttt{n} levels
+						\item[ \texttt{-mindepth n}] Do not apply tests at levels less than \texttt{n}
+					\end{description}
+				}
+			\end{frame}
+
+			\begin{frame}{ \texttt{find}}
+				Following \texttt{TESTS} are available:
+				\begin{description}
+					\item[Name] \texttt{-name, -iname, -path, -ipath}
+					\item[Links]
+					\item[Time] \texttt{-atime, -ctime, -mtime, -amin, -cmin, -mmin, -anewer, -cnewer, -mnewer, -newerXY, -used}
+					\item[Size] \texttt{-size, -empty}
+					\item[Type] \texttt{-type}
+					\item[Owner] \texttt{-user, -group}
+					\item[Mode Bits/ File Permissions] \texttt{-perm, -readable, -writable, -executable}
+					\item[Contents]
+					\item[Directories]
+					\item[Filesystems]
+				\end{description}
+			\end{frame}
+			\begin{frame}[fragile]{ \texttt{find}}
+				\only<1>{
+				\begin{exampleblock}{ \texttt{-path}}
+					\begin{semiverbatim}
+\$ find . -path '*/dir4a'
+
+./dir1/dir1a/dir2c/dir3a/dir4a \end{semiverbatim}	
+				\end{exampleblock}
+				}
+				\only<2-4>{
+					\begin{block}{Task}
+						Find files that were edited before:
+						\begin{enumerate}
+							\item 10 days.
+							\item 10 minutes.
+						\end{enumerate}
+					\end{block}
+				}
+				\only<3>{
+				\begin{exampleblock}{ \texttt{-newerXY}}
+					\begin{semiverbatim}
+\$ find . -newermt "Jul 11"
+\end{semiverbatim}	
+				\end{exampleblock}
+				}
+				\only<4>{
+				\begin{exampleblock}{ \texttt{-newerXY}}
+					\begin{semiverbatim}
+\$ find . -newermt "10:20"
+\end{semiverbatim}	
+				\end{exampleblock}
+				}
+				\only<5>{
+				\begin{exampleblock}{ \texttt{-size}}
+					\begin{semiverbatim}
+\$ find . -size +5k
+\$ find . -size -5k
+\end{semiverbatim}	
+				\end{exampleblock}
+				}
+				\only<6>{
+				\begin{exampleblock}{Content}
+					\begin{semiverbatim}
+\$ find . -name '*.[23]' | xargs grep -l anime
+
+./dir1/dir1a/dir2c/dir3a/file4.2
+
+./dir1/dir1b/file1b.3
+\end{semiverbatim}	
+				\end{exampleblock}
+				}
 			\end{frame}
 			\begin{frame}{ \texttt{locate}}
 				locate
@@ -262,6 +336,7 @@
 						\texttt{find}:
 						\begin{enumerate}
 							\item \href{http://doc.cat-v.org/unix/find-history}{Find History}
+							\item GNU Findutils - \texttt{info} --> Find
 						\end{enumerate}
 					}
 			\end{enumerate}

@@ -1,21 +1,15 @@
-\frametitle{\texttt {grep}}
-The exit status of \texttt{grep} when:
-^^I^^I^^I^^I\begin{itemize}
-^^I^^I^^I^^I^^I\item \textbf{line is selected} is \textbf{0}.
-^^I^^I^^I^^I^^I\item \textbf{no line is selected} is \textbf{1}.
-^^I^^I^^I^^I^^I\item \textbf{an error occurs} is \textbf{2}.
-^^I^^I^^I^^I\end{itemize}
-^^I^^I^^I^^IUseful \texttt{grep} options:
-^^I^^I^^I^^I\begin{description}
-^^I^^I^^I^^I^^I\item[ \texttt{-i}] ignore case
-^^I^^I^^I^^I^^I\item[ \texttt{-v}] invert matches
-^^I^^I^^I^^I^^I\item[ \texttt{-c}] count no. of matching lines
-^^I^^I^^I^^I^^I\item[ \texttt{-n}] prefic each line with line number
-^^I^^I^^I^^I^^I\item[ \texttt{-l}] print name of the file and suppress all other output
-^^I^^I^^I^^I^^I\item[ \texttt{-H}] print filename for each match
-^^I^^I^^I^^I^^I\item[ \texttt{-o}] print only the matched parts of a line
-^^I^^I^^I^^I^^I\item[ \texttt{-s}] suppress error messages
-^^I^^I^^I^^I^^I\item[ \texttt{--color}] color the matching content
-^^I^^I^^I^^I^^I\item[ \texttt{-a} ] accept binary input
-^^I^^I^^I^^I^^I\item[ \texttt{--label=LABEL}] display input actually coming from \texttt{stdin} as input from file \texttt{LABEL}
-^^I^^I^^I^^I\end{description}
+\frametitle{ \texttt {find}}
+\texttt{find} search for files in a directory hierarchy.
+^^I^^I^^I^^I\setbeamercovered{invisible}
+^^I^^I^^I^^I\begin{alertblock}{Syntax}
+^^I^^I^^I^^I^^I\only<1>{\texttt{find DIRECTORY EXPRESSION}}
+^^I^^I^^I^^I^^I\only<2->{\texttt{find DIRECTORY TESTS ACTIONS}}
+^^I^^I^^I^^I\end{alertblock}
+^^I^^I^^I^^I\only<3->{
+^^I^^I^^I^^I\begin{example}
+^^I^^I^^I^^I^^I\begin{semiverbatim}
+^^I^^I^^I^^I^^I^^I\$ find . -name fontawesome -print
+^^I^^I^^I^^I^^I^^I ./fontawesome
+^^I^^I^^I^^I^^I\end{semiverbatim}
+^^I^^I^^I^^I\end{example}
+^^I^^I^^I}

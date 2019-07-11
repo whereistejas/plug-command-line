@@ -11,6 +11,9 @@
 \usetheme{minflat}
 
 \usepackage{hyperref}
+
+\hypersetup{pdfstartview={Fit}}
+
 \title[PLUG Meetup]{Master your Command Line \\ \small{(Before it masters you)} }
 \subtitle{\large{Part 2: Useful commands}}
 \author{Tejas Sanap}
@@ -45,7 +48,7 @@
 					\end{itemize}
 				\item Search for files (in directories).
 					\begin{itemize}
-						\item \texttt{find, locate, xargs}
+						\item \texttt{find, locate}
 					\end{itemize}
 				\item Manipulate text (in files).
 					\begin{itemize}
@@ -53,7 +56,7 @@
 					\end{itemize}
 				\item Manipulate files (in directories).
 					\begin{itemize}
-						\item \texttt{cp, scp, rm, mv}
+						\item \texttt{cp, scp, rm, mv, rsync}
 						\item \texttt{gzip, tar}
 					\end{itemize}
 				\item Manipulate file permission and ownership.
@@ -73,11 +76,8 @@
 		\end{frame}
 	
 	\section{Search}
-		\begin{frame}{Text editors}
-			Do we really need Vim?	
-		\end{frame}
 		\subsection{Text}
-			\begin{frame}{\texttt{cat, head, tail, wc}}
+			\begin{frame}{\texttt{cat, head, cd , wc}}
 				Utilities to view file content
 				\begin{example}
 					\texttt{cat -A -n -s torrent-trackers}
@@ -86,7 +86,7 @@
 					\texttt{head -n 10 torrent-trackers}
 				\end{example}
 				\begin{example}
-					\texttt{tail -n 10 torrent-trackers}
+					\texttt{cd , cd .., cd \textasciitilde, cd -}
 				\end{example}
 				\begin{example}
 					\texttt{wc torrent-trackers}
@@ -100,16 +100,48 @@
 				}
 			\end{frame}
 
-			\begin{frame}[fragile]{\texttt{grep}}
+			\begin{frame}{ \texttt{ls}}
+				\texttt{ls} displays directory contents. \\
+				Useful \texttt{ls} options:
+				\begin{description}
+					\item[ \texttt{--sort}] \texttt{-S, -t, -X} Size, time, extension
+					\item[ \texttt{--format}] \texttt{-1, -m, -l} Horizontal, commas, long
+					\item[ \texttt{-h}] human readable
+					\item[ \texttt{-g}] don't display file owner
+					\item[ \texttt{-G}] don't display file group
+					\item[ \texttt{-d}] list only directories
+					\item[ \texttt{-I}] Ignore files matching pattern
+					\item[ \texttt{--hide}]  Hide files matching pattern (overriden by \texttt{-a})
+				\end{description}
+			\end{frame}
+
+			\begin{frame}{ \texttt{ls}}
+				\begin{block}{Task}
+					\begin{enumerate}
+						\item List all the directories in the folder \texttt{find}
+						\item List the last five files/folders to be modified
+					\end{enumerate}
+				\end{block}	
+				\setbeamercovered{invisible}
+				\begin{example}
+					\begin{semiverbatim}
+						\only<1>{\$ ls       }
+						\only<2>{\$ ls -d *\\}
+						\only<3>{\$ ls -1t | head} \end{semiverbatim}	
+				\end{example}
+			\end{frame}
+
+			\begin{frame}{\texttt{grep}}
 				\texttt{grep} prints line that matches a certain pattern.
 				\begin{alertblock}{Syntax}
 					\texttt{grep OPTIONS PATTERN INPUT\_FILE\_NAMES}
 				\end{alertblock}
 				\begin{exampleblock}{Example}
 					\begin{semiverbatim}
-\$ grep --color=always "anime" torrent-tracker
-udp://tc.{\textbf{\color{red}{anime}}}reactor.ru:8082/announce
-udp://tc.{\textbf{\color{red}{anime}}}reactor.ru:8082/announce \end{semiverbatim}	
+						\$ grep --color=always "anime" torrent-tracker
+						udp://tc.{\textbf{\color{red}{anime}}}reactor.ru:8082/announce
+						udp://tc.{\textbf{\color{red}{anime}}}reactor.ru:8082/announce 
+					\end{semiverbatim}	
 				\end{exampleblock}
 			\end{frame}
 
@@ -125,7 +157,7 @@ udp://tc.{\textbf{\color{red}{anime}}}reactor.ru:8082/announce \end{semiverbatim
 					\item[ \texttt{-i}] ignore case
 					\item[ \texttt{-v}] invert matches
 					\item[ \texttt{-c}] count no. of matching lines
-					\item[ \texttt{-n}] prefic each line with line number
+					\item[ \texttt{-n}] prefix each line with line number
 					\item[ \texttt{-l}] print name of the file and suppress all other output
 					\item[ \texttt{-H}] print filename for each match
 					\item[ \texttt{-o}] print only the matched parts of a line
@@ -136,7 +168,7 @@ udp://tc.{\textbf{\color{red}{anime}}}reactor.ru:8082/announce \end{semiverbatim
 				\end{description}
 			\end{frame}
 
-			\begin{frame}[t]{ \texttt{grep}}
+			\begin{frame}[t]{\texttt{grep}}
 				\begin{block}{Task}
 					\begin{enumerate}
 						\item We have a tar file named \texttt{python\_code.tar.gz}
@@ -159,18 +191,29 @@ udp://tc.{\textbf{\color{red}{anime}}}reactor.ru:8082/announce \end{semiverbatim
 					\end{semiverbatim}
 				\end{example}
 			\end{frame}
+
 		\subsection{Files}
-			\begin{frame}{ \texttt{find}}
-				find
+			\begin{frame}[fragile]{ \texttt{find}}
+				\texttt{find} search for files in a directory hierarchy.
+				\setbeamercovered{invisible}
+				\begin{alertblock}{Syntax}
+					\only<1>{\texttt{find DIRECTORY EXPRESSION}}
+					\only<2->{\texttt{find DIRECTORY TESTS ACTIONS}}
+				\end{alertblock}
+				\only<3->{
+				\begin{example}
+					\begin{semiverbatim}
+						\$ find . -name fontawesome -print
+						 ./fontawesome
+					\end{semiverbatim}					
+				\end{example}
+			}
 			\end{frame}
 			\begin{frame}{ \texttt{locate}}
 				locate
 			\end{frame}
 	
 	\section{Manipulate}
-		\begin{frame}{File Manager}
-			Do we really need Nautilus, Thunar or Ranger?	
-		\end{frame}
 		\subsection{Text}
 			\begin{frame}{ \texttt{sed}}
 				sed
@@ -181,6 +224,7 @@ udp://tc.{\textbf{\color{red}{anime}}}reactor.ru:8082/announce \end{semiverbatim
 			\begin{frame}{ \texttt{cut}}
 				cur
 			\end{frame}
+
 		\subsection{Files}
 			\begin{frame}{ \texttt{scp}}
 				\begin{itemize}
@@ -199,9 +243,6 @@ udp://tc.{\textbf{\color{red}{anime}}}reactor.ru:8082/announce \end{semiverbatim
 			\end{frame}
 
 	\section{Shell porn}
-		\begin{frame}{\texttt{fasd}}
-			fasd
-		\end{frame}
 		\begin{frame}{\texttt{fortune} \& \texttt{cowsay}}
 			\begin{itemize}
 				\item Let's add some star trek quotes
@@ -212,8 +253,18 @@ udp://tc.{\textbf{\color{red}{anime}}}reactor.ru:8082/announce \end{semiverbatim
 
 	\highlightedFrame{Questions?}
 
-	\section*{References}
+	\section{References}
 		\begin{frame}{References}
-			\texttt{\\bibliography}
+			\begin{enumerate}
+				\item \href{http://find.unixpin.com/}{UnixPin}
+				\item \texttt{man 7 regex}
+				\item {
+						\texttt{find}:
+						\begin{enumerate}
+							\item \href{http://doc.cat-v.org/unix/find-history}{Find History}
+						\end{enumerate}
+					}
+			\end{enumerate}
 		\end{frame}
-`end{document}
+
+\end{document}

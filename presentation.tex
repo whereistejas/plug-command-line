@@ -19,6 +19,7 @@
 \author{Tejas Sanap}
 \date{\today}
 
+
 \begin{document}
 	\begin{frame}
 		\titlepage
@@ -39,7 +40,6 @@
 		\end{frame}
 
 		\begin{frame}{Basic Operations}
-			All operations performed in the terminal can be categorized as:
 			\begin{itemize}
 				\item Search for text (in files).
 					\begin{itemize}
@@ -48,23 +48,19 @@
 					\end{itemize}
 				\item Search for files (in directories).
 					\begin{itemize}
+						\item \texttt{ls}
 						\item \texttt{find, locate}
 					\end{itemize}
-				\item Manipulate text (in files).
+				\item Manipulate files and directories.
 					\begin{itemize}
-						\item \texttt{sed, awk, cut}
+						\item \texttt{cp, scp, rm, mv}
+						\item \texttt{rsync}
 					\end{itemize}
-				\item Manipulate files (in directories).
-					\begin{itemize}
-						\item \texttt{cp, scp, rm, mv, rsync}
-						\item \texttt{gzip, tar}
-					\end{itemize}
-				\item Manipulate file permission and ownership.
 			\end{itemize}			
 		\end{frame}
 
 		\begin{frame}{GNU Coreutils}
-			The {\textbf{\color{darkpurple}{GNU Core Utilities}}} are the basic file, shell and text manipulation utilities of the GNU operating system. \\
+			The {\textbf{\color{darkpurple}{GNU Core Utilities} } } are the basic file, shell and text manipulation utilities of the GNU operating system. \\
 				They are expected to be present on every operating system. \\
 				Previously, the core utilities were implemented by the following pacakages:
 				\begin{enumerate}
@@ -74,9 +70,8 @@
 				\end{enumerate}	
 				In 2003, these three packages were combined into the current \texttt{coreutils} package.
 		\end{frame}
-	
-	\section{Search}
-		\subsection{Text}
+
+	\section[File]{Inside the file}
 			\begin{frame}{\texttt{cat, head, cd , wc}}
 				Utilities to view file content
 				\begin{example}
@@ -100,36 +95,6 @@
 				}
 			\end{frame}
 
-			\begin{frame}{ \texttt{ls}}
-				\texttt{ls} displays directory contents. \\
-				Useful \texttt{ls} options:
-				\begin{description}
-					\item[ \texttt{--sort}] \texttt{-S, -t, -X} Size, time, extension
-					\item[ \texttt{--format}] \texttt{-1, -m, -l} Horizontal, commas, long
-					\item[ \texttt{-h}] human readable
-					\item[ \texttt{-g}] don't display file owner
-					\item[ \texttt{-G}] don't display file group
-					\item[ \texttt{-d}] list only directories
-					\item[ \texttt{-I}] Ignore files matching pattern
-					\item[ \texttt{--hide}]  Hide files matching pattern (overriden by \texttt{-a})
-				\end{description}
-			\end{frame}
-
-			\begin{frame}{ \texttt{ls}}
-				\begin{block}{Task}
-					\begin{enumerate}
-						\item List all the directories in the folder \texttt{find}
-						\item List the last five files/folders to be modified
-					\end{enumerate}
-				\end{block}	
-				\setbeamercovered{invisible}
-				\begin{example}
-					\begin{semiverbatim}
-						\only<1>{\$ ls       }
-						\only<2>{\$ ls -d *\\}
-						\only<3>{\$ ls -1t | head} \end{semiverbatim}	
-				\end{example}
-			\end{frame}
 
 			\begin{frame}{\texttt{grep}}
 				\texttt{grep} prints line that matches a certain pattern.
@@ -139,8 +104,8 @@
 				\begin{exampleblock}{Example}
 					\begin{semiverbatim}
 						\$ grep --color=always "anime" torrent-tracker
-						udp://tc.{\textbf{\color{red}{anime}}}reactor.ru:8082/announce
-						udp://tc.{\textbf{\color{red}{anime}}}reactor.ru:8082/announce 
+						udp://tc.{\textbf{\color{red}{anime} } }reactor.ru:8082/announce
+						udp://tc.{\textbf{\color{red}{anime} } }reactor.ru:8082/announce 
 					\end{semiverbatim}	
 				\end{exampleblock}
 			\end{frame}
@@ -192,7 +157,38 @@
 				\end{example}
 			\end{frame}
 
-		\subsection{Files}
+	\section[Directory]{Inside the directory}
+			\begin{frame}{ \texttt{ls}}
+				\texttt{ls} displays directory contents. \\
+				Useful \texttt{ls} options:
+				\begin{description}
+					\item[ \texttt{--sort}] \texttt{-S, -t, -X} Size, time, extension
+					\item[ \texttt{--format}] \texttt{-1, -m, -l} Horizontal, commas, long
+					\item[ \texttt{-h}] human readable
+					\item[ \texttt{-g}] don't display file owner
+					\item[ \texttt{-G}] don't display file group
+					\item[ \texttt{-d}] list only directories
+					\item[ \texttt{-I}] Ignore files matching pattern
+					\item[ \texttt{--hide}]  Hide files matching pattern (overriden by \texttt{-a})
+				\end{description}
+			\end{frame}
+
+			\begin{frame}{ \texttt{ls}}
+				\begin{block}{Task}
+					\begin{enumerate}
+						\item List all the directories in the folder \texttt{find}
+						\item List the last five files/folders to be modified
+					\end{enumerate}
+				\end{block}	
+				\setbeamercovered{invisible}
+				\begin{example}
+					\begin{semiverbatim}
+						\only<1>{\$ ls       }
+						\only<2>{\$ ls -d *\\}
+						\only<3>{\$ ls -1t | head} \end{semiverbatim}	
+				\end{example}
+			\end{frame}
+
 			\begin{frame}[fragile]{ \texttt{find}}
 				\texttt{find} search for files in a directory hierarchy.
 				\setbeamercovered{invisible}
@@ -231,6 +227,7 @@
 					\item[Filesystems]
 				\end{description}
 			\end{frame}
+
 			\begin{frame}[fragile]{ \texttt{find}}
 				\only<1>{
 				\begin{exampleblock}{ \texttt{-path}}
@@ -283,28 +280,29 @@
 				\end{exampleblock}
 				}
 			\end{frame}
+
 			\begin{frame}{ \texttt{locate}}
-				locate
+				\texttt{locate} finds files by name
+				It has two drawbacks:
+				\begin{enumerate}
+					\item It uses the database built using \texttt{updatedb}.
+					\item It does not check if the files still exist.
+				\end{enumerate}
+				Useful \texttt{locate} options:
+				\begin{description}
+					\item[ \texttt{-l, --limit}] limit the no. of entries being displayed
+					\item[ \texttt{-b, --basename}] match only the basename of the file
+					\item[ \texttt{-S, --statistics}] display the database stats
+				\end{description}
 			\end{frame}
 	
-	\section{Manipulate}
-		\subsection{Text}
-			\begin{frame}{ \texttt{sed}}
-				sed
-			\end{frame}
-			\begin{frame}{ \texttt{awk}}
-				awk
-			\end{frame}
-			\begin{frame}{ \texttt{cut}}
-				cur
-			\end{frame}
-
-		\subsection{Files}
+	\section[Manipulate]{Manipulate Files and Directories}
 			\begin{frame}{ \texttt{scp}}
 				\begin{itemize}
 					\item download \texttt{znc.pem} from server to add to irssi client
 				\end{itemize}			
 			\end{frame}
+
 			\begin{frame}{ \texttt{rm}, \texttt{cp} \& \texttt{mv}}
 				\begin{itemize}
 					\item Text globbing - Use latex compile files and stuff as examples
@@ -312,11 +310,8 @@
 						\texttt{ rm pre*.!(tex) }
 				\end{itemize}	
 			\end{frame}
-			\begin{frame}{ \texttt{gzip, tar}}
-				
-			\end{frame}
 
-	\section{Shell porn}
+	\section[Bling]{Shell porn}
 		\begin{frame}{\texttt{fortune} \& \texttt{cowsay}}
 			\begin{itemize}
 				\item Let's add some star trek quotes

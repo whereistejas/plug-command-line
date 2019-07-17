@@ -11,7 +11,6 @@
 \usetheme{minflat}
 
 \usepackage{hyperref}
-
 \hypersetup{pdfstartview={Fit}}
 
 \title[PLUG Meetup]{Master your Command Line \\ \small{(Before it masters you)} }
@@ -72,6 +71,7 @@
 		\end{frame}
 
 	\section[File]{Inside the file}
+
 			\begin{frame}{\texttt{cat, head, cd , wc}}
 				Utilities to view file content
 				\begin{example}
@@ -94,7 +94,6 @@
 					\end{alertblock}
 				}
 			\end{frame}
-
 
 			\begin{frame}{\texttt{grep}}
 				\texttt{grep} prints line that matches a certain pattern.
@@ -157,7 +156,9 @@
 				\end{example}
 			\end{frame}
 
+
 	\section[Directory]{Inside the directory}
+
 			\begin{frame}{ \texttt{ls}}
 				\texttt{ls} displays directory contents. \\
 				Useful \texttt{ls} options:
@@ -167,11 +168,12 @@
 					\item[ \texttt{-h}] human readable
 					\item[ \texttt{-g}] don't display file owner
 					\item[ \texttt{-G}] don't display file group
-					\item[ \texttt{-d}] list only directories
+					\item[ \texttt{-d}] if argument is a directory, list only its name 
 					\item[ \texttt{-I}] Ignore files matching pattern
 					\item[ \texttt{--hide}]  Hide files matching pattern (overriden by \texttt{-a})
 				\end{description}
 			\end{frame}
+
 
 			\begin{frame}{ \texttt{ls}}
 				\begin{block}{Task}
@@ -184,10 +186,11 @@
 				\begin{example}
 					\begin{semiverbatim}
 						\only<1>{\$ ls       }
-						\only<2>{\$ ls -d *\\}
+						\only<2>{\$ ls -d */}
 						\only<3>{\$ ls -1t | head} \end{semiverbatim}	
 				\end{example}
 			\end{frame}
+
 
 			\begin{frame}[fragile]{ \texttt{find}}
 				\texttt{find} search for files in a directory hierarchy.
@@ -228,7 +231,7 @@
 				\end{description}
 			\end{frame}
 
-			\begin{frame}[fragile]{ \texttt{find}}
+			\begin{frame}[fragile]{ \texttt{find -TESTS}}
 				\only<1>{
 				\begin{exampleblock}{ \texttt{-path}}
 					\begin{semiverbatim}
@@ -236,40 +239,13 @@
 
 ./dir1/dir1a/dir2c/dir3a/dir4a \end{semiverbatim}	
 				\end{exampleblock}
-				}
-				\only<2-4>{
-					\begin{block}{Task}
-						Find files that were edited before:
-						\begin{enumerate}
-							\item 10 days.
-							\item 10 minutes.
-						\end{enumerate}
-					\end{block}
-				}
-				\only<3>{
-				\begin{exampleblock}{ \texttt{-newerXY}}
-					\begin{semiverbatim}
-\$ find . -newermt "Jul 11"
-\end{semiverbatim}	
-				\end{exampleblock}
-				}
-				\only<4>{
-				\begin{exampleblock}{ \texttt{-newerXY}}
-					\begin{semiverbatim}
-\$ find . -newermt "10:20"
-\end{semiverbatim}	
-				\end{exampleblock}
-				}
-				\only<5>{
 				\begin{exampleblock}{ \texttt{-size}}
 					\begin{semiverbatim}
 \$ find . -size +5k
 \$ find . -size -5k
 \end{semiverbatim}	
 				\end{exampleblock}
-				}
-				\only<6>{
-				\begin{exampleblock}{Content}
+				\begin{exampleblock}{find files with some content}
 					\begin{semiverbatim}
 \$ find . -name '*.[23]' | xargs grep -l anime
 
@@ -279,10 +255,60 @@
 \end{semiverbatim}	
 				\end{exampleblock}
 				}
+				\only<2-3>{
+					\begin{block}{Task}
+						Find files that were edited before:
+						\begin{enumerate}
+							\item 10 days.
+							\item 10 minutes.
+						\end{enumerate}
+					\end{block}
+				}
+				\only<3>{
+					\begin{exampleblock}{ \texttt{-newerXY}}
+						\begin{semiverbatim}
+\$ find . -newermt "Jul 11"
+\end{semiverbatim}	
+					\end{exampleblock}
+					\begin{exampleblock}{ \texttt{-newerXY}}
+						\begin{semiverbatim}
+\$ find . -newermt "10:20"
+\end{semiverbatim}	
+					\end{exampleblock}
+				}
+				\only<4-5>{
+					\begin{block}{Task}
+						Find and delete all files of a specific file type.
+					\end{block}
+				}
+				\only<5>{
+					\begin{exampleblock}{ \texttt{-regex}}
+						\texttt{\$ find -regextype egrep -regex ".*\.(db|jpg)"}
+					\end{exampleblock}
+					\begin{exampleblock}{Use multiple tests}
+						\texttt{\$ find . -type f \backslash ( -name "*.db" -or -name "*.jpg" \backslash ) }
+					\end{exampleblock}
+				}
 			\end{frame}
 
-			\begin{frame}{ \texttt{locate}}
-				\texttt{locate} finds files by name
+			\begin{frame}{ \texttt{find -ACTIONS}}
+				\begin{alertblock}{Syntax}
+					\only<1>{
+						\texttt{ -execdir command {\color{red}\{\}} ';'} \\
+						\tiny \hspace{3.2cm} { \color{red} \texttt{file name} }
+					}
+					\only<2>{
+						\texttt{ -execdir command \{\} {\color{red}';'} } \\
+						\tiny \hspace{3.6cm} { \color{red} \texttt{end of command} }
+					}
+				\end{alertblock}	
+				\begin{exampleblock}{ \texttt{-execdir}}
+					\texttt{\$ find -name "*.db" -execdir rm \{\} ';'}
+				\end{exampleblock}				
+			\end{frame}
+
+			\begin{frame}[fragile]{ \texttt{locate}}
+				\texttt{locate} finds files by name. \\
 				It has two drawbacks:
 				\begin{enumerate}
 					\item It uses the database built using \texttt{updatedb}.
@@ -294,9 +320,15 @@
 					\item[ \texttt{-b, --basename}] match only the basename of the file
 					\item[ \texttt{-S, --statistics}] display the database stats
 				\end{description}
+				\begin{exampleblock}{Example}
+					\begin{semiverbatim}
+\$ sudo updatedb
+\$ locate \end{semiverbatim}
+				\end{exampleblock}
 			\end{frame}
 	
 	\section[Manipulate]{Manipulate Files and Directories}
+
 			\begin{frame}{ \texttt{scp}}
 				\begin{itemize}
 					\item download \texttt{znc.pem} from server to add to irssi client
@@ -312,6 +344,7 @@
 			\end{frame}
 
 	\section[Bling]{Shell porn}
+
 		\begin{frame}{\texttt{fortune} \& \texttt{cowsay}}
 			\begin{itemize}
 				\item Let's add some star trek quotes
@@ -320,9 +353,8 @@
 			\end{itemize}
 		\end{frame}
 
-	\highlightedFrame{Questions?}
-
 	\section{References}
+
 		\begin{frame}{References}
 			\begin{enumerate}
 				\item \href{http://find.unixpin.com/}{UnixPin}
@@ -337,4 +369,8 @@
 			\end{enumerate}
 		\end{frame}
 
+	\highlightedFrame{Questions?}
+
 \end{document}
+
+% vim: set foldmethod=manual

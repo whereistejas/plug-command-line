@@ -1,0 +1,6 @@
+\beamer@sectionintoc {1}{Introduction}{3}{0}{1}
+\beamer@sectionintoc {2}{Inside the file}{7}{0}{2}
+\beamer@sectionintoc {3}{Inside the directory}{20}{0}{3}
+\beamer@sectionintoc {4}{Manipulate Files and Directories}{38}{0}{4}
+\beamer@sectionintoc {5}{Shell porn}{41}{0}{5}
+\beamer@sectionintoc {6}{References}{43}{0}{6}

@@ -1,51 +1,18 @@
-\frametitle{ \texttt {find}}
-\only<1>{
-^^I^^I^^I^^I\begin{exampleblock}{ \texttt{-path}}
+\frametitle{ \texttt {locate}}
+\texttt{locate} finds files by name. \\
+^^I^^I^^I^^IIt has two drawbacks:
+^^I^^I^^I^^I\begin{enumerate}
+^^I^^I^^I^^I^^I\item It uses the database built using \texttt{updatedb}.
+^^I^^I^^I^^I^^I\item It does not check if the files still exist.
+^^I^^I^^I^^I\end{enumerate}
+^^I^^I^^I^^IUseful \texttt{locate} options:
+^^I^^I^^I^^I\begin{description}
+^^I^^I^^I^^I^^I\item[ \texttt{-l, --limit}] limit the no. of entries being displayed
+^^I^^I^^I^^I^^I\item[ \texttt{-b, --basename}] match only the basename of the file
+^^I^^I^^I^^I^^I\item[ \texttt{-S, --statistics}] display the database stats
+^^I^^I^^I^^I\end{description}
+^^I^^I^^I^^I\begin{exampleblock}{Example}
 ^^I^^I^^I^^I^^I\begin{semiverbatim}
-\$ find . -path '*/dir4a'
-
-./dir1/dir1a/dir2c/dir3a/dir4a \end{semiverbatim}
+\$ sudo updatedb
+\$ locate \end{semiverbatim}
 ^^I^^I^^I^^I\end{exampleblock}
-^^I^^I^^I^^I}
-^^I^^I^^I^^I\only<2-4>{
-^^I^^I^^I^^I^^I\begin{block}{Task}
-^^I^^I^^I^^I^^I^^IFind files that were edited before:
-^^I^^I^^I^^I^^I^^I\begin{enumerate}
-^^I^^I^^I^^I^^I^^I^^I\item 10 days.
-^^I^^I^^I^^I^^I^^I^^I\item 10 minutes.
-^^I^^I^^I^^I^^I^^I\end{enumerate}
-^^I^^I^^I^^I^^I\end{block}
-^^I^^I^^I^^I}
-^^I^^I^^I^^I\only<3>{
-^^I^^I^^I^^I\begin{exampleblock}{ \texttt{-newerXY}}
-^^I^^I^^I^^I^^I\begin{semiverbatim}
-\$ find . -newermt "Jul 11"
-\end{semiverbatim}
-^^I^^I^^I^^I\end{exampleblock}
-^^I^^I^^I^^I}
-^^I^^I^^I^^I\only<4>{
-^^I^^I^^I^^I\begin{exampleblock}{ \texttt{-newerXY}}
-^^I^^I^^I^^I^^I\begin{semiverbatim}
-\$ find . -newermt "10:20"
-\end{semiverbatim}
-^^I^^I^^I^^I\end{exampleblock}
-^^I^^I^^I^^I}
-^^I^^I^^I^^I\only<5>{
-^^I^^I^^I^^I\begin{exampleblock}{ \texttt{-size}}
-^^I^^I^^I^^I^^I\begin{semiverbatim}
-\$ find . -size +5k
-\$ find . -size -5k
-\end{semiverbatim}
-^^I^^I^^I^^I\end{exampleblock}
-^^I^^I^^I^^I}
-^^I^^I^^I^^I\only<6>{
-^^I^^I^^I^^I\begin{exampleblock}{Content}
-^^I^^I^^I^^I^^I\begin{semiverbatim}
-\$ find . -name '*.[23]' | xargs grep -l anime
-
-./dir1/dir1a/dir2c/dir3a/file4.2
-
-./dir1/dir1b/file1b.3
-\end{semiverbatim}
-^^I^^I^^I^^I\end{exampleblock}
-^^I^^I^^I^^I}

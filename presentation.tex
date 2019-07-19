@@ -12,6 +12,7 @@
 
 \usepackage{hyperref}
 \hypersetup{pdfstartview={Fit}}
+\usepackage{booktabs}
 
 \title[PLUG Meetup]{Master your Command Line \\ \small{(Before it masters you)} }
 \subtitle{\large{Part 2: Useful commands}}
@@ -68,6 +69,46 @@
 				  \item \texttt{textutils}
 				\end{enumerate}	
 				In 2003, these three packages were combined into the current \texttt{coreutils} package.
+		\end{frame}
+
+		\begin{frame}{Globbing}
+			\begin{itemize}
+				\item \textbf{Glob} is the common name for a set of Bash features that match or expand specific types of patterns. 
+				\item When used for filename matching globs are called \textbf{wildcards}.
+				\item Wildcards cannot match filenames that \textbf{don't yet exist}.
+			\end{itemize}
+			\begin{align*}
+				\begin{tabular}{cl}
+					\toprule
+					\textbf{Glob} & \textbf{Meaning} \\
+					\midrule
+					\textbf{*} & matches all characters, any number of times \\
+					\textbf{?} & matches all characters, but only once \\
+					\textbf{[...]} & character class \\
+					\textbf{\{... , ... , ...\}} & group patterns seperated by comma's \\
+					\bottomrule
+				\end{tabular}
+			\end{align}
+			\begin{exampleblock}{Example}
+				\texttt{\$ for each in "\$(ls -d /*)"; \\ do (cd \$each \&\& mv ?? ../ \&\& cd -); done }
+			\end{exampleblock}
+		\end{frame}
+
+		\begin{frame}{regex}
+			A few simple regex characters:
+			\begin{align*}
+				\begin{tabular}{cl}
+					\toprule
+					\textbf{Character} & \textbf{Meaning} \\
+					\midrule
+					\textbf{\string^} & Beginning of line \\ 
+					\textbf{\$} & End of line \\
+					\textbf{.} & Single character \\
+					\textbf{*} & All characters \\
+					\textbf{\{n,m\}} & Occurance between minimum n and maximum m times
+					\endrule
+				\end{tabular}
+			\end{align}
 		\end{frame}
 
 	\section[File]{Inside the file}
@@ -242,6 +283,7 @@
 				\begin{exampleblock}{ \texttt{-size}}
 					\begin{semiverbatim}
 \$ find . -size +5k
+
 \$ find . -size -5k
 \end{semiverbatim}	
 				\end{exampleblock}
@@ -329,27 +371,17 @@
 	
 	\section[Manipulate]{Manipulate Files and Directories}
 
-			\begin{frame}{ \texttt{scp}}
-				\begin{itemize}
-					\item download \texttt{znc.pem} from server to add to irssi client
-				\end{itemize}			
-			\end{frame}
+		\begin{frame}{ \texttt{rsync}}
+			
+		\end{frame}
 
-			\begin{frame}{ \texttt{rm}, \texttt{cp} \& \texttt{mv}}
-				\begin{itemize}
-					\item Text globbing - Use latex compile files and stuff as examples
-					\item \href{https://www.gnu.org/software/bash/manual/bashref.html#Pattern-Matching}{Bash Pattern Matching} \\
-						\texttt{ rm pre*.!(tex) }
-				\end{itemize}	
-			\end{frame}
-
-	\section[Bling]{Shell porn}
+	\section[Bling]{Customize your shell}
 
 		\begin{frame}{\texttt{fortune} \& \texttt{cowsay}}
 			\begin{itemize}
 				\item Let's add some star trek quotes
+				\item fortune
 				\item Cowthink and cowsay
-				\item Add some bling with pony
 			\end{itemize}
 		\end{frame}
 
@@ -358,7 +390,13 @@
 		\begin{frame}{References}
 			\begin{enumerate}
 				\item \href{http://find.unixpin.com/}{UnixPin}
-				\item \texttt{man 7 regex}
+				\item {
+						\texttt{glob}:
+						\begin{enumerate}
+							\item \texttt{man 7 glob}
+							\item \texttt{man 7 regex}
+						\end{enumerate}
+					}
 				\item {
 						\texttt{find}:
 						\begin{enumerate}

@@ -15,7 +15,7 @@
 \usepackage{booktabs}
 
 \title[PLUG Meetup]{Master your Command Line \\ \small{(Before it masters you)} }
-\subtitle{\large{Part 2: Useful commands}}
+\subtitle{\large{Important terminal commands}}
 \author{Tejas Sanap}
 \date{\today}
 
@@ -105,7 +105,7 @@
 					\textbf{\$} & End of line \\
 					\textbf{.} & Single character \\
 					\textbf{*} & All characters \\
-					\textbf{\{n,m\}} & Occurance between minimum n and maximum m times
+					\textbf{\{n,m\}} & Occurance between minimum \emph{n} and maximum \emph{m} times
 					\endrule
 				\end{tabular}
 			\end{align}
@@ -167,9 +167,9 @@
 					\item[ \texttt{-H}] print filename for each match
 					\item[ \texttt{-o}] print only the matched parts of a line
 					\item[ \texttt{-s}] suppress error messages
-					\item[ \texttt{--color}] color the matching content
 					\item[ \texttt{-a} ] accept binary input
-					\item[ \texttt{--label=LABEL}] display input actually coming from \texttt{stdin} as input from file \texttt{LABEL}
+					\item[ \texttt{--label=LABEL}] display input coming from \texttt{stdin} as input from file \texttt{LABEL}
+					\item[ \texttt{-A, -B, -C}] print \texttt{n} lines after, before or around the matching line
 				\end{description}
 			\end{frame}
 
@@ -372,7 +372,30 @@
 	\section[Manipulate]{Manipulate Files and Directories}
 
 		\begin{frame}{ \texttt{rsync}}
-			
+			 Rsync is a fast and  extraordinarily  versatile  file  copying  tool.
+
+			 \texttt{cp} and \texttt{mv} have the following drawbacks:
+			 \begin{enumerate}
+			 	\item Don't show progress bars
+				\item Don't support incremental file copying/backups
+				\item Don't support various secure protocols
+				\item Don't have "resume" copying/moving capability
+			 \end{enumerate}
+
+			 However, to use \texttt{rsync} it must be installed on both source and destination machines.
+		\end{frame}
+
+		\begin{frame}{ \texttt{rsync}}
+			Useful options for \texttt{rsync}:
+			\begin{description}
+				\item[ \texttt{-a}] archive mode
+				\item[ \texttt{-z}] compress files
+				\item[ \texttt{--dry-run}] perform a trial without making any changes
+				\item[ \texttt{--delete}] delete files that aren't present in the source directory
+				\item[ \texttt{--delete-from-source}] move files
+				\item[ \texttt{-e}] give SSH options
+				\item[ \texttt{-v}] show verbose output
+			\end{description}
 		\end{frame}
 
 	\section[Bling]{Customize your shell}
